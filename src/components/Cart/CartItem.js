@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 const CartItem = (props) => {
   const { title, quantity, total, price, onIncrease, onDecrease } = props.item;
 
-  const itemsContador = useSelector((state) => state.itemsCounter.itemsCounter);
+  const items = useSelector((state) => state.cartItems.items);
   const dispatch = useDispatch();
 
   return (

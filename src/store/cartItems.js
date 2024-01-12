@@ -1,12 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialItemsCounterState = {
+const initialCartItemsState = {
     items: []
 }
 
-const itemsCounterSlice = createSlice({
+const cartItemsSlice = createSlice({
     name:'itemsCounter es el listado de items con su cantidad',
-    initialState: initialItemsCounterState,
+    initialState: initialCartItemsState,
     reducers: {
         addItem(state, product){            
             const existingItemIndex = state.items.findIndex(
@@ -48,11 +48,11 @@ const itemsCounterSlice = createSlice({
 
         },
         clearCart(state){
-            state = initialItemsCounterState;
+            state = initialCartItemsState;
         }
     }
 });
 
-export const itemsCounterActions = itemsCounterSlice.actions;
+export const cartItemsActions = cartItemsSlice.actions;
 
-export default itemsCounterSlice.reducer;
+export default cartItemsSlice.reducer;
