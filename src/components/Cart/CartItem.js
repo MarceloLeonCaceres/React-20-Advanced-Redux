@@ -1,7 +1,12 @@
 import classes from './CartItem.module.css';
 
+import { useSelector, useDispatch } from 'react-redux';
+
 const CartItem = (props) => {
-  const { title, quantity, total, price } = props.item;
+  const { title, quantity, total, price, onIncrease, onDecrease } = props.item;
+
+  const itemsContador = useSelector((state) => state.itemsCounter.itemsCounter);
+  const dispatch = useDispatch();
 
   return (
     <li className={classes.item}>
@@ -17,8 +22,8 @@ const CartItem = (props) => {
           x <span>{quantity}</span>
         </div>
         <div className={classes.actions}>
-          <button>-</button>
-          <button>+</button>
+          <button onClick={onIncrease}>-</button>
+          <button onClick={onDecrease}>+</button>
         </div>
       </div>
     </li>
