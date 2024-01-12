@@ -1,36 +1,41 @@
 import classes from "./CartItem.module.css";
 
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+
+import { cartItemsActions } from "../../store/cartItems";
 
 const CartItem = (props) => {
-  const { title, quantity, total, price, handleIncrease, handleDecrease } =
+  const { title, quantity, total, price, id } =
     props.item;
 
   const items = useSelector((state) => state.cartItems.items);
   console.log("cartItems: ", items);
 
-  const articulo = {
-    title,
-    quantity,
-    total,
-    price,
+  const dispatch = useDispatch();
+  const handleIncrease = () => {
+    
+    const articulo = {
+      id,
+      title,
+      quantity,
+      total,
+      price,
+    };
+    console.log('articulo de Cart.js: ', articulo);
+    dispatch(cartItemsActions.addItem(articulo));
+  };
+  const handleDecrease = () => {
+    dispatch(cartItemsActions.removeItem(id));
   };
 
-  const onIncrease = () => {
-    handleIncrease(articulo);
-  };
-
-  const onDecrease = () => {
-    handleDecrease(title);
-  };
 
   return (
     <li className={classes.item}>
       <header>
         <h3>{title}</h3>
         <div className={classes.price}>
-          ${total.toFixed(2)}{" "}
-          <span className={classes.itemprice}>(${price.toFixed(2)}/item)</span>
+          ${(Number(total)).toFixed(2)}{" "}
+          <span className={classes.itemprice}>(${(Number(price)).toFixed(2)}/item)</span>
         </div>
       </header>
       <div className={classes.details}>
@@ -38,8 +43,8 @@ const CartItem = (props) => {
           x <span>{quantity}</span>
         </div>
         <div className={classes.actions}>
-          <button onClick={onIncrease}>-</button>
-          <button onClick={onDecrease}>+</button>
+          <button onClick={handleDecrease}>-</button>
+          <button onClick={handleIncrease}>+</button>
         </div>
       </div>
     </li>

@@ -1,23 +1,31 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialCartItemsState = {
-    items: []
+    items: [],
+    totalQuantity: 0,
 }
 
 const cartItemsSlice = createSlice({
     name:'itemsCounter es el listado de items con su cantidad',
     initialState: initialCartItemsState,
     reducers: {
-        addItem(state, product){      
-            console.log('producto ...Desde cartItemsSlice: ', product);
+        addItem(state, action){            
+            const newItem = action.payload;
+            console.log('producto ...Desde cartItemsSlice: ', newItem);
             const existingItemIndex = state.items.findIndex(
-                (item) => item.id === product.payload.id
+                (item) => item.id === newItem.id
             );
             console.log('existingItemIndex: ', existingItemIndex);
             console.log('state.items: ', state.items);
             if(existingItemIndex === -1){                
-                const item = {...product.payload.producto, quantity: 1, total: product.payload.producto.price }
-                console.log('item = ', item);
+                const item = {
+                    id: newItem.id,
+                    price: newItem.price,
+                    quantity: 1,
+                    totalPrice: newItem.price,
+                    name: newItem.title
+                 }
+                console.log('item to add = ', item);
                 state.items.push(item);
             } else {
                 
@@ -32,7 +40,8 @@ const cartItemsSlice = createSlice({
                 updateItems[existingItemIndex] = updatedItem;
             }
         },
-        removeItem(state, id){
+        removeItem(state, action){
+            const id = action.payload;
             const existingItemIndex = state.items.findIndex(
                 (item) => item.id === id
             );

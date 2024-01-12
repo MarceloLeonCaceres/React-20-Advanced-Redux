@@ -14,7 +14,7 @@ const ProductItem = (props) => {
     const producto = { id: title, price: price, description: description };
     console.log(producto);
     dispatch(cartButtonCounterActions.increment());
-    dispatch(cartItemsActions.addItem({ producto }));
+    dispatch(cartItemsActions.addItem( producto ));
   };
 
   return (

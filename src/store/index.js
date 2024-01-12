@@ -4,7 +4,7 @@ import cartButtonCounterReducer from './cartButtonCounter.js';
 
 import cartItemsReducer from './cartItems.js';
 
-import cartShowReducer from '../store/cartShow.js';
+import cartShowReducer from './cartShow.js';
 
 const store = configureStore({
     reducer: {
