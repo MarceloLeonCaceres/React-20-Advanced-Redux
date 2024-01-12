@@ -2,7 +2,7 @@ import Card from '../UI/Card';
 import classes from './ProductItem.module.css';
 
 import { useDispatch } from 'react-redux';
-import { cartCounterActions } from '../../store/cartCounter.js';
+import { cartButtonCounterActions } from '../../store/cartButtonCounter.js';
 
 
 const ProductItem = (props) => {
@@ -11,7 +11,7 @@ const ProductItem = (props) => {
   const dispatch = useDispatch();
 
   const incrementCartItems = () => {
-    dispatch(cartCounterActions.increment());
+    dispatch(cartButtonCounterActions.increment());
   }
 
   return (
