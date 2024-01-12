@@ -4,10 +4,11 @@ import classes from './CartButton.module.css';
 
 import { cartShowActions } from '../../store/cartShow';
 
+
 const CartButton = (props) => {
 
   const dispatch = useDispatch();
-  const counter = useSelector((state) => state.cartCounter.cartCounter);
+  const counter = useSelector((state) => state.cartItems.totalQuantity);
 
 const handleToggleCartVisibility = () => {
   dispatch(cartShowActions.toggleShow());

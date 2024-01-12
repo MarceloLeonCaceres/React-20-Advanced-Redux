@@ -1,13 +1,13 @@
 export default [
     {
         "id": 1,
-        "title": "p1",
+        "title": "Mi primer producto",
         "price": "1.00", 
         "description": "Primer producto"
     },
     {
         "id": 2,
-        "title": "p2",
+        "title": "Second product",
         "price": "2.00", 
         "description": "Segundo producto"
     },

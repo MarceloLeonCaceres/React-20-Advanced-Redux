@@ -6,12 +6,12 @@ import { cartButtonCounterActions } from "../../store/cartButtonCounter.js";
 import { cartItemsActions } from "../../store/cartItems";
 
 const ProductItem = (props) => {
-  const { title, price, description } = props;
+  const { title, price, description, id } = props;
 
   const dispatch = useDispatch();
 
   const incrementCartItems = () => {
-    const producto = { id: title, price: price, description: description };
+    const producto = { id: id, title: title, price: price, description: description };
     console.log(producto);
     dispatch(cartButtonCounterActions.increment());
     dispatch(cartItemsActions.addItem( producto ));

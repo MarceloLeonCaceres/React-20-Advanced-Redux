@@ -12,6 +12,7 @@ const cartItemsSlice = createSlice({
         addItem(state, action){            
             const newItem = action.payload;
             console.log('producto ...Desde cartItemsSlice: ', newItem);
+            state.totalQuantity++;
             const existingItemIndex = state.items.findIndex(
                 (item) => item.id === newItem.id
             );
@@ -25,7 +26,7 @@ const cartItemsSlice = createSlice({
                     totalPrice: newItem.price,
                     name: newItem.title
                  }
-                console.log('item to add = ', item);
+                console.log('item to add (push) = ', item);
                 state.items.push(item);
             } else {
                 
@@ -34,7 +35,7 @@ const cartItemsSlice = createSlice({
                 
                 const updatedItem = {
                     ...existingCartItem,
-                    total: (existingCartItem.quantity + 1) * 1,
+                    totalPrice: existingCartItem.totalPrice + newItem.price,
                     quantity: existingCartItem.quantity + 1,
                 };
                 updateItems[existingItemIndex] = updatedItem;
@@ -42,6 +43,7 @@ const cartItemsSlice = createSlice({
         },
         removeItem(state, action){
             const id = action.payload;
+            state.totalQuantity--;
             const existingItemIndex = state.items.findIndex(
                 (item) => item.id === id
             );
@@ -53,12 +55,11 @@ const cartItemsSlice = createSlice({
             } else {
                 const updatedItem = {
                     ...existingCartItem,
-                    total: (existingCartItem.quantity - 1) * 1,
+                    totalPrice: existingCartItem.totalPrice - existingCartItem.price,
                     quantity: existingCartItem.quantity - 1,
                 };
                 updateItems[existingItemIndex] = updatedItem;
             }
-
         },
         clearCart(state){
             state = initialCartItemsState;

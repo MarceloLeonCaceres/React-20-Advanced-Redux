@@ -17,13 +17,12 @@ const CartItem = (props) => {
     const articulo = {
       id,
       title,
-      quantity,
-      total,
-      price,
+      price
     };
     console.log('articulo de Cart.js: ', articulo);
     dispatch(cartItemsActions.addItem(articulo));
   };
+
   const handleDecrease = () => {
     dispatch(cartItemsActions.removeItem(id));
   };
