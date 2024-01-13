@@ -13,7 +13,6 @@ const CartItem = (props) => {
 
   const dispatch = useDispatch();
   const handleIncrease = () => {
-    
     const articulo = {
       id,
       title,
